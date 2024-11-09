@@ -83,7 +83,9 @@ export const AuthProvider = ({ children }: IAuthProviderProps) => {
       toast: false,
       position: "center",
     });
-    window.location.href = "/";
+    if (typeof window !== "undefined") {
+      window.location.href = "/";
+    }
   }, [setUser, setUserExternal]);
 
   const checkTokenExpiration = useCallback(() => {
@@ -179,7 +181,9 @@ export const AuthProvider = ({ children }: IAuthProviderProps) => {
       localStorage.removeItem("user");
       setUser(null);
       setUserExternal(null);
-      window.location.href = "/";
+      if (typeof window !== "undefined") {
+        window.location.href = "/";
+      }
     }
   };
 
